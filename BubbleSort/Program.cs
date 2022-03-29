@@ -6,18 +6,26 @@ namespace BubbleSort
     {
         static void Main(string[] args)
         {
-            int[] randomNum = new int[10];             //Creating random array
-            Random rnd = new Random();
-            Console.WriteLine("Original:");
-            for (int i = 0;i < randomNum.Length; i++)  
+            int[] number = getRandomNumber();
+            bubbleSort(number);
+            printSortedNumber(number);
+        }
+
+        private static void printSortedNumber(int[] randomNum)
+        {
+            Console.WriteLine("Bubble sorted:");
+            for (int i = 0; i < randomNum.Length; i++)
             {
-                randomNum[i] = rnd.Next(1, 50);
                 Console.WriteLine(randomNum[i]);
             }
+        }
 
-            int length=randomNum.Length;
+        private static void bubbleSort(int[] randomNum)
+        {
+            int length = randomNum.Length;
             int replace = 0;
-            do                                         //Bubble sorting array
+
+            do
             {
                 for (int i = 0; i < length - 1; i++)
                 {
@@ -28,13 +36,24 @@ namespace BubbleSort
                         randomNum[i + 1] = replace;
                     }
                 }
+
                 length--;
             } while (length > 1);
-            Console.WriteLine("Bubble sorted:");
+        }
+
+        private static int[] getRandomNumber()
+        {
+            int[] randomNum = new int[10];
+            Random rnd = new Random();
+            Console.WriteLine("Original:");
+
             for (int i = 0; i < randomNum.Length; i++)
             {
+                randomNum[i] = rnd.Next(1, 50);
                 Console.WriteLine(randomNum[i]);
             }
+
+            return randomNum;
         }
     }
 }
